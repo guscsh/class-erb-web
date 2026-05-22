@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load humanize %}
+{% block title %} | {{ listing.title | title }} {% endblock %}
 {% block content %}
     <section id="showcase-inner" class="py-5 text-white">
       <div class="container">
@@ -153,7 +154,20 @@
                 </ul>
               </div>
             </div>
-
+            <!-- Service Tag -->
+            <div class="row mb-5">
+              <h4 class="text-secondary">Services: </h4>
+                {% if listing.services.all %}
+                <ul>
+                  {% for service_tag in listing.services.all %}
+                    <li class="mr-3">
+                      <h5>{{ service_tag.name | title }}</h5>
+                    </li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
+              </div>
+            </div>
             <!-- Description -->
             <div class="row mb-5">
               <div class="col-md-12">{{ listing.description }}
